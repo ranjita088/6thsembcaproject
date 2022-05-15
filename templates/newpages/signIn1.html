@@ -1,0 +1,67 @@
+{% load static %}
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 left-item">
+                    <ul>
+                        <li><i class="fas fa-envelope-square"></i> ranjitamaharjan16@gmail.com</li>
+                        <li><i class="fas fa-phone-square"></i> +123 987 887 765</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block right-item">
+                    <ul>
+                        <li><a><i class="fab fa-github"></i></a></li>
+                        <li><a><i class="fab fa-google-plus-g"></i></a></li>
+                        <li> <a><i class="fab fa-pinterest-p"></i></a></li>
+                        <li><a><i class="fab fa-twitter"></i></a></li>
+                        <li> <a><i class="fab fa-facebook-f"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="nav-head" class="header-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 no-padding col-sm-12 nav-img">
+                    <img src="{% static 'images/logo.jpg' %}" alt="">
+                    <a data-toggle="collapse" data-target="#menu" href="#menu"><i
+                            class="fas d-block d-md-none small-menu fa-bars"></i></a>
+                </div>
+                <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                    <ul>
+
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about'%}">About Us</a></li>
+                        <li><a href="{% url 'service'%}">Services</a></li>
+                        <!-- <li><a href="news.html">News</a></li>   -->
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="{% url 'contact'%}">Contact Us</a></li>
+
+                        <li><a href="{% url 'login1'%}">Login</a></li>
+
+                    </ul>
+                </div>
+                <!-- <div class="col-sm-2 d-none d-lg-block appoint">
+                    {% if <user class="is_register">Login</user> %}
+                    <button class="btn btn-info"><a href="/logout">Logout</a></button>
+
+                    {% if user.is_doctor %}
+                    <p style="color: red;"><span style="color: red;">Welcome!!{{user.email }}</span> </p>
+                    <hr>
+                    {% else %}
+                    <p style="color: red;"><a href="{% url 'userdetailsview' %}"><span
+                                style="color: red;">Welcome!!{{user.email }}</span> </a></p>
+                    {% endif %}
+                    {% else %}
+                    <button class="btn btn-info"><a href="{% url 'login' %}">SignIn</a></button>
+                    {% endif %}
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+
+</header>

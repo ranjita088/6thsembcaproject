@@ -1,0 +1,39 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block body_contents %}
+ 
+
+    <div class="container">
+      <br><br><br><br><br><br>
+        <h2 class="text-center text-primary font-weight-bold">View Appointment</h2>
+        <table id="example" class="table table-hover  mt-5">
+            <thead>
+              <tr>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">AppointmentDate</th>
+                <th scope="col">AppointmentTime</th>
+                <th scope="col">Description</th>
+                <th scope="col">Delete</th>
+        
+              </tr>
+            </thead>
+            <tbody>
+              {% for appoint in appointment %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{ appoint.doctorName }}</td>
+                <td>{{ appoint.patientName }}</td>
+                <td>{{ appoint.appointmentDate }}</td>
+                <td>{{ appoint.appointmentTime}}</td>
+                <td>{{ appoint.description }}</td>
+               
+                <td><a href="{% url 'delete_appointment' appoint.id%}" class = "btn btn-Danger">Delete</a></td>
+              </tr>
+              
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block body_contents %}
+
+<div class="container">
+<br><br><br><br><br><br>
+  <h2 class="text-center">Add Appointment</h2>
+    <div class="card-body">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="col-auto">
+          <label for="Doctor Name">Doctor Name</label>
+          <select name="doctorName" class="form-control" >
+            {% for doc in doctor %} 
+            <option value="{{ doc.doc_Name}}">{{ doc.doc_Name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-auto">
+          <label for="Patient Name">Patient Name</label>
+          <select name="patientName" class="form-control" >
+            {% for patient in patients  %} 
+            <option value="{{ patient.pName }}">{{ patient.pName }} </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label for="Date">AppointmentDate</label>
+          <input type="date" class="form-control" name="appointmentDate">
+        </div>
+        <div class="col-auto">
+          <label for="Time">AppointmentTime</label>
+          <input type="appointmentTime" class="form-control" name="time">
+        </div>
+    <div class="col-auto">
+      <label for="description">Description=</label>
+      <textarea name="description" name="description"></textarea>
+    </div>
+        <br>
+        <div class="col-auto">
+          <button type="submit" value="Submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

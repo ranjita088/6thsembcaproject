@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<h2>Fill the form for Scheduling the Appointment with Doctor!</h2>
+<form action="" method="post">
+  {% csrf_token%}
+  {{form.as_p}}
+  <button class="btn btn-primary" type="submit" value="create apoopontment">Submit</button>
+</form>
+<!-- <p>Don't have an account?<a href="/createAppointment">Create an Account</a></p> -->
+
+</body>
+</html>

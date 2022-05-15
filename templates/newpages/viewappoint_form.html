@@ -1,0 +1,45 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block body_content %}
+
+<br><br><br><br><br><br><br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>S.N</th>
+      <th scope="col">PatientName</th>
+      <th scope="col">AppointmentDate</th>
+      <th scope="col">AppointmentTime</th>
+      <th scope="col">PatientSymptoms</th>
+      <th scope="col">Doctor</th>
+      <th scope="col">create_at</th>
+      <th scope="col"> update_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <p style="font-size: large;"><b>Following are your appointments</b></p>
+    <br><br>
+    {% for appt in appointments %}
+    <tr>
+    <th scope="row">{{forloop.counter}}</th>
+    <td>{{appt.patient_name}}</td>
+    <td>{{appt.date}}</td>
+    <td>{{appt.time}}</td>
+    <td>{{appt.symptoms}}</td>
+    <td>{{appt.doctor}}</td>
+    <td>{{appt.create_at}}</td>
+    <td>{{appt.update_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</body>
+</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{%  endblock %}

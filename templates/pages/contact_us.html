@@ -1,0 +1,107 @@
+{% extends "base.html"%}
+{% load static %}
+{% block body_content %}
+
+<div class="page-nav no-margin row">
+    <div class="container">
+        <div class="row">
+            <h2>Our Gallery</h2>
+            <ul>
+                <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><i class="fas fa-angle-double-right"></i> Contact</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% if message_name %}
+<center>
+    <h2>Thanks {{ message_name }}!</h2>
+    <p>We received your email and will respond shortly.....</p>
+</center>
+<br><br>
+{% else %}
+<div style="margin-top:0px;" class="row no-margin">
+
+    <iframe style="width:100%"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.5952563191418!2d85.32715821453186!3d27.606075282834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb16e6ab71151f%3A0xf77046e3c4a2dff!2sBajrabarahi%20Temple!5e0!3m2!1sen!2snp!4v1651053747532!5m2!1sen!2snp"
+        height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+<div class="row contact-rooo no-margin">
+    <div class="container">
+        <div class="row">
+            <div style="padding:20px" class="col-sm-6">
+                <h2 style="font-size:18px">Contact Form - {{ message_name }}</h2>
+                <!-- <form action="#" method="post">
+                    {% csrf_token %}
+                <div class="row">
+                    <div style="padding-top:10px;" class="col-sm-3">
+                        <label>Enter Name :</label>
+                    </div>
+                    <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="message_name"
+                            class="form-control input-sm"></div>
+                </div> 
+                    <div style="margin-top:10px;" class="row">
+                    <div style="padding-top:10px;" class="col-sm-3"><label>Email Address :</label></div>
+                    <div class="col-sm-8"><input type="text" name="message_email" placeholder="Enter Email Address"
+                            class="form-control input-sm"></div>
+                </div> 
+                    <div style="margin-top:10px;" class="row"> 
+                    <div style="padding-top:10px;" class="col-sm-3"><label>Mobile Number:</label></div>
+                    <div class="col-sm-8"><input type="text" name="message_number" placeholder="Enter Mobile Number"
+                            class="form-control input-sm"></div>
+                </div> 
+                    <div style="margin-top:10px;" class="row">
+                    <div style="padding-top:10px;" class="col-sm-3"><label>Enter Message:</label></div>
+                    <div class="col-sm-8">
+                        <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm"
+                            name="message"></textarea>
+                    </div>
+                </div> 
+                    <div style="margin-top:10px;" class="row"> 
+                    <div style="padding-top:10px;" class="col-sm-3"><label></label></div>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-danger">Send Message</button>
+                    </div>
+                    </form> -->
+                <form method="POST">
+                    <!-- Very Important csrf Token -->
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <p>
+                        <h3>{{ form.as_p }}</h3>
+                        </p>
+                        <br>
+                        <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>
+                    </div>
+                </form>
+
+
+            </div>
+            {% endif %}
+            <div class="col-sm-6">
+                <div style="margin:50px" class="serv">
+                    <h2 style="margin-top:10px;">Address</h2>
+                    Lalit Hospital <br>
+                    <!-- Daman Street<br> -->
+                    Lalitpur District<br>
+                    Phone:+91 9843144205<br>
+                    Email:ranjitamaharjan16@gmail.com<br>
+                    <!-- Website:www.smart-eye.com<br> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container" style="margin-top:50px">
+  <h2 class="text-center">Contact Us</h2>
+  <div class="row">
+    <div class="col-lg-3">
+      <h4><i class="fas fa-phone-square"></i>Contact</h4>
+      <p><a href="tel: +977-5563985"></a></p>
+    </div>
+  </div>
+</div> -->
+
+
+{% endblock %}

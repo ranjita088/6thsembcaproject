@@ -1,0 +1,48 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block body_contents %}
+
+<div class="container">
+  <br> <br> <br><br><br><br>
+  <h2 class="text-center">Add Patient</h2>
+
+    <div class="card-body">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="col-auto">
+          <label for="Doctor Name">Patient  Name</label>
+          <input type="text" class="form-control" name="pname">
+        </div>
+        <div class="col-auto">
+          <label for="Doctor Email">Patient Email</label>
+          <input type="email" class="form-control" name="pemail">
+        </div>
+        <div class="col-auto">
+          <label for="Patient Address">Patient Address</label>
+          <textarea type="text" class="form-control" name="paddress"></textarea>
+        </div>
+        <br>
+        <div class="col-auto">
+          <label for="Gender">Gender</label>
+          <input type="radio" name="gender" value="Male">Male
+          <input type="radio" name="gender" value="Female">Female
+        </div>
+        <br>
+        <div class="col-auto">
+          <label for="Patient Number">Patient Contact</label>
+          <input type="number" class="form-control" name="pmobile">
+        </div>
+        <div class="col-auto">
+          <label for="Symptoms">Symptoms</label>
+          <input type="text" class="form-control" name="symptoms">
+        </div>
+       
+        <br>
+        <div class="col-auto">
+          <button type="submit" value="Admit" class="btn btn-primary mb-3">Admit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

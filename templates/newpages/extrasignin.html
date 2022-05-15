@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block body_content %}
+
+<br><br><br><br><br><br><br>
+
+
+<h2>Fill the form to login!!!!!!</h2>
+  <form action="" method="post">
+    {% csrf_token%}
+    {{form.as_p}}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+  <p>Don't have an account?<a href="/signup/">Create an Account</a></p>
+  
+</body>
+</html>
+<br><br><br><br><br><br><br>
+{% endblock %}
