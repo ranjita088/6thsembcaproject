@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.hospitalappointment',
     'admin_interface',
-    'colorfield' 
+    'colorfield' ,
+    'crispy_forms',
+    
 
     
     
@@ -150,7 +152,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 #email setting
 # EMAIL_HOST = 'smtp'
@@ -160,11 +162,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_USE_TIS = False # security
 # EMAIL_USE_SSL = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_USER = 'ranjitamaharjan16@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'rangitamaharjan8@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_RECEIVING_USER = ['ranjitamaharjan16@gmail.com']
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = ('EMAIL_HOST')
-# EMAIL_PORT = '587'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'ranjitamaharjan16@gmail.com'
-# EMAIL_HOST_PASSWORD = ''
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

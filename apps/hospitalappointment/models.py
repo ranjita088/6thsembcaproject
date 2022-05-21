@@ -48,7 +48,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length= 225,null=True)
     address = models.CharField(max_length=255,null=True)
     phone = models.IntegerField(null=True)
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_('email'), unique=True)
     is_doctor = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -103,12 +103,19 @@ class DoctorAppointment(models.Model):
     def __str__(self):
         return (self.user.email)
 
-# class Contactus(models.Model):
-#     name =models.CharField(max_length=30)
-#     email = models.EmailField()
-#     number = models.IntegerField()
-#     message = models.TextField(max_length=500)
+class Contactus(models.Model):
+    name =models.CharField(max_length=30)
+    email = models.EmailField()
+    number = models.IntegerField()
+    message = models.TextField(max_length=500)
 
 
-#     def __str__(self):
-#         return (self.user.name)
+    def __str__(self):
+        return (self.user.name)
+        
+class PasswordReset(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    email = models.EmailField()
+
+    def __str__(self):
+        return (self.user.email)

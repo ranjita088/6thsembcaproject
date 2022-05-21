@@ -46,14 +46,14 @@
     box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
   }
   
-  .box h4 {
+  .box h3 {
     font-family: 'Source Sans Pro', sans-serif;
     color: #5c6bc0; 
     font-size: 18px;
     margin-top:94px;;
   }
   
-  .box h4 span {
+  .box h3 span {
     color: #dfdeee;
     font-weight: lighter;
   }
@@ -68,13 +68,14 @@
   }
   
   .box input[type = "text"],.box input[type = "password"] {
-    display: block;
-    margin: 20px auto;
+    /* display: block; */
+    /* margin: 20px auto; */
+    
     background: #262e49;
     border: 0;
     border-radius: 5px;
     padding: 14px 10px;
-    width: 320px;
+    width: 250px;
     outline: none;
     color: #d6d6d6;
         -webkit-transition: all .2s ease-out;
@@ -169,7 +170,7 @@
       width: 13px;
   }
   
-  .typcn {
+  /* .typcn {
     position: absolute;
     left: 339px;
     top: 282px;
@@ -180,7 +181,7 @@
   
   .typcn.active {
     color: #7f60eb;
-  }
+  } */
   
   .error {
     background: #ff3333;
@@ -223,43 +224,37 @@
 <div class="animated bounceInDown">
   <div class="container">
     <span class="error animated tada" id="msg"></span>
-    <!-- <form name="form1" class="box" onsubmit="return checkStuff()">
-      <h4>Login <span>Dashboard</span></h4>
-      <h5>Sign in to your account.</h5>
-        <input type="text" name="email" placeholder="Email" autocomplete="off">
-        <i class="typcn typcn-eye" id="eye"></i>
-        <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
-        <label>
-          <input type="checkbox">
-          <span></span>
-          <small class="rmb">Remember me</small>
-        </label>
-        <a href="#" class="forgetpass">Forget Password?</a>
-        <input type="submit" value="Sign in" class="btn1">
-      </form>
-        <a href="#" class="dnthave">Don’t have an account? Sign up</a> -->
+  
         
-        <form action="" method="post">
-          <h4>Login <span>Dashboard</span></h4>
+        <form  name="form1" class="box" action="" method="post"  >
+          <h3>Login <span>Dashboard</span></h3>
         <h5>Sign in to your account.</h5>
           {% csrf_token%}
+          <!-- <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
+            
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td> -->
           {{form.as_p}}
           <label>
             <input type="checkbox">
             <span></span>
             <small class="rmb">Remember me</small>
           </label>
-          <a href="#" class="forgetpass">Forget Password?</a>
+          <a href="/password_reset/" class="forgetpass">Forget Password?</a>
+          <input type="submit" value="Sign in" class="btn1">
           <!-- <button class="btn btn-primary" type="submit">Login</button> -->
           
         </form>
-        <ahref="/signup/" class="dnthave">Don’t have an account? Sign up</a>
+        <!-- <p>Don't have an account?<a href="/signup/">Create an Account</a></p> -->
+  
+        <a href="/signup/" class="dnthave">Don’t have an account? Sign up</a>
         <!-- <p>Don't have an account?<a href="/signup/">Create an Account</a></p> -->
         
     </div> 
-       <div class="footer">
+       <!-- <div class="footer">
       <span>Made with <i class="fa fa-heart pulse"></i> <a href="https://www.google.de/maps/place/Augsburger+Puppenkiste/@48.360357,10.903245,17z/data=!3m1!4b1!4m2!3m1!1s0x479e98006610a511:0x73ac6b9f80c4048f"><a href="https://codepen.io/lordgamer2354">By Anees Khan</a></span>
-    </div>
+    </div> -->
 </div>
 
 </body>

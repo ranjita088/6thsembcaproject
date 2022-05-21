@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             <div style="padding:20px" class="col-sm-6">
-                <h2 style="font-size:18px">Contact Form - {{ message_name }}</h2>
+                <h3 style="font-size:18px">Contact Form - {{ message_name }}</h3>
                 <!-- <form action="#" method="post">
                     {% csrf_token %}
                 <div class="row">
@@ -69,7 +69,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <p>
-                        <h3>{{ form.as_p }}</h3>
+                        {{ form.as_p }}
                         </p>
                         <br>
                         <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>

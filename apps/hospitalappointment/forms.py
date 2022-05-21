@@ -1,11 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from apps.hospitalappointment.models import  CustomUser,DoctorAppointment
+from apps.hospitalappointment.models import  Contactus, CustomUser,DoctorAppointment, PasswordReset
 
 class CustomUserForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     class Meta:
         model  =CustomUser
-        fields =("username","address","phone","email",)
+        fields =("username","address","phone","email",'password1', 'password2')
+        
         # fields =("email",)
 
 class DoctorAppointmentForm(forms.ModelForm):
@@ -15,17 +17,23 @@ class DoctorAppointmentForm(forms.ModelForm):
         widgets={
             'date':forms.DateInput(attrs={'type':'date'}),
             'time':forms.TimeInput(attrs={'type':'time'}),
-            'symptoms' : forms.Textarea(attrs={'rows':3, 'cols':47.9})
+            'symptoms' : forms.Textarea(attrs={'rows':3, 'cols':47})
 
         }
 
-# class ContactusForm(forms.ModelForm):
-#     class Meta:
-#         model = Contactus
-#         fields = ("name","email","number","message",)
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contactus
+        fields = ("name","email","number","message",)
 
-class ContactForm(forms.Form):
-    Name = forms.CharField(max_length=30)
-    Email = forms.EmailField(max_length = 150)
-    Number = forms.IntegerField()
-    Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
+# class ContactForm(forms.Form):
+#     Name = forms.CharField(max_length=30)
+#     Email = forms.EmailField(max_length = 150)
+#     Number = forms.IntegerField()
+#     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
+
+
+class PasswordResetForm(forms.ModelForm):
+    class Meta:
+        model = PasswordReset()
+        fields = ("email",)

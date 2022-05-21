@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.hospitalappointment.views import About_us,Contact_us,Services, SignIn, SignOut, SignUp, UserDeleteAppt, UserDetailsView, UserUpdateAppt, ViewAppointment,createAppointment,index_page
+from apps.hospitalappointment.views import About_us,Contact_us,Services, SignIn, SignOut, SignUp, UserDeleteAppt, UserDetailsView, UserUpdateAppt, ViewAppointment,createAppointment,index_page, password_reset_request
 
 # apps_name = "appointment"
 
@@ -22,6 +22,8 @@ urlpatterns = [
     path("userdetailsview/",UserDetailsView,name="userdetailsview"),
     path('userdeleteappt/<int:id>/',UserDeleteAppt,name='userdeleteappt'),
     path('userupdateappt/<int:id>/',UserUpdateAppt,name='userupdateappt'),
+
+    path("password_reset/", password_reset_request,name="password_reset"),
 
 ]
 
