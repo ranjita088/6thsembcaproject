@@ -2,18 +2,16 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from apps.hospitalappointment.models import  Contactus, CustomUser,DoctorAppointment, PasswordReset
 
+
 class CustomUserForm(UserCreationForm):
-    email = forms.EmailField(required=True)
     class Meta:
-        model  =CustomUser
-        fields =("username","address","phone","email",'password1', 'password2')
-        
-        # fields =("email",)
+        model=CustomUser
+        fields =("fullname","username","address","phone","email",)
 
 class DoctorAppointmentForm(forms.ModelForm):
     class Meta:
         model = DoctorAppointment
-        exclude = ("user","done",   ) #except user field display all field
+        exclude = ("user","done",) #except user field display all field
         widgets={
             'date':forms.DateInput(attrs={'type':'date'}),
             'time':forms.TimeInput(attrs={'type':'time'}),

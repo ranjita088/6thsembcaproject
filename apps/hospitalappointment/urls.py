@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.hospitalappointment.views import About_us,Contact_us,Services, SignIn, SignOut, SignUp, UserDeleteAppt, UserDetailsView, UserUpdateAppt, ViewAppointment,createAppointment,index_page, password_reset_request
+from apps.hospitalappointment.views import About_us,Contact_us,Services, SignIn, SignOut, Signup, UserDeleteAppt, UserDetailsView, UserUpdateAppt, ViewAppointment,createAppointment,index_page, password_reset_request
 
 # apps_name = "appointment"
 
@@ -15,7 +15,7 @@ urlpatterns = [
     path('login/',SignIn, name = "login"),
     
     path('logout/',SignOut, name = "sign_out"),
-    path('signup/',SignUp, name = "sign_up"),
+    path('signup/',Signup, name = "sign_up"),
 
     path("createAppointment/",createAppointment,name="createAppointment"),
     path("viewAppointment/",ViewAppointment,name="viewAppointment"),

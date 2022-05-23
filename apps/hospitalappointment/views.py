@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,authenticate
 from apps.hospitalappointment.models import CustomUser, DoctorAppointment,Doctor 
 from django.core.mail import send_mail
-
 from config import settings
 
 def index_page(request):
@@ -63,34 +62,43 @@ def createAppointment(request):
         form = DoctorAppointmentForm()
     return render(request,"newpages/appoint_form.html",{'form':form})
 
+def Signup(request):
+    if(request.method == 'POST'):
+        form = CustomUserForm(request.POST)
+        if(form.is_valid()):
+            # print("thanks")
+            user = form.save()
+            login(request, user)
+            return redirect('login')
+            # return HttpResponseRedirect('/')
 
-# def SignUp(request):
-#     if(request.method == "POST"):
-#         pass
-#     else:
-#         form  = UserCreationForm()
-#     return render(request,"signup.html",{'form':form})
+    else:
+        form = CustomUserForm()
+    return render(request, 'newpages/signup.html', {'form': form})
+
 
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 
-def SignUp(request):
-    if(request.method == "POST"):
-        form = CustomUserForm(request.POST)
+# def SignUp(request):
+#     if(request.method == "POST"):
+#         form = CustomUserForm(request.POST)
 
-        if(form.is_valid):
-            # print("thanks")
-            form.save()
-            # login(request,user)
-            messages.success(request,"register successfully")
-            return redirect('login')
-            # return HttpResponseRedirect('/')
-    else:
-        messages.error(request,'invalid login')
-        form  = CustomUserForm()
-    return render(request,"newpages/signup.html",{'form':form})
+#         if(form.is_valid):
+#             # print("thanks")
+#             form.save()
+#             # login(request,user)
+#             messages.success(request,"register successfully")
+#             return redirect('login')
+#             # return HttpResponseRedirect('/')
+#     else:
+#         messages.error(request,'invalid login')
+#         form  = CustomUserForm()
+#     return render(request,"newpages/signup.html",{'form':form})
 
+
+  
 
 def SignIn(request):
     if(request.method == "POST"):
@@ -105,11 +113,11 @@ def SignIn(request):
                messages.info(request, f"You are now logged in as {username}.")
                return HttpResponseRedirect('/')
             else:
-                messages.error(request,"Invalid Username and password")
+                pass
         else:
             return render(request,"newpages/sigIn.html",{'form':form})
     else:
-        messages.error(request,"Invalid Username and password")
+        # messages.error(request,"Invalid Username and password")
         form = AuthenticationForm()
         return render(request,"newpages/sigIn.html",{'form':form})
 

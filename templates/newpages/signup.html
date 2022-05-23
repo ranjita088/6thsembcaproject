@@ -36,7 +36,7 @@
       border-radius: 9px;
       border-top: 10px solid #79a6fe;
       border-bottom: 10px solid #8BD17C;
-      width: 400px;
+      width:500px;
       height: 500px;
       box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
     }
@@ -53,17 +53,25 @@
       color: #dfdeee;
       font-weight: lighter;
     }
+    .box h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 13px;
+    color: #a1a4ad;
+    letter-spacing: 1.5px;
+    margin-top: -15px;
+    margin-bottom: 70px;
+  }
 
     .box h5 {
-      display: flex;
+      /* display: flex; */
       font-family: 'Source Sans Pro', sans-serif;
       font-size: 13px;
       color: #a1a4ad;
       letter-spacing: 1.5px;
       margin-top: -15px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
-
+    
     .box input[type="text"],
     .box input[type="textarea"],
     .box input[type="number"],
@@ -85,6 +93,7 @@
     .box input[type="email"]:focus,
     .box input[type="password"]:focus,
     {
+      
     border: 1px solid #79A6FE;
     }
 
@@ -122,27 +131,33 @@
     <div class="container">
       <span class="error animated tada" id="msg"></span>
 
-      <form name="form1" class="box" method="post">
+      <form class="box"  method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
         <h3>Register <span>Dashboard</span></h3>
         <h4>Sign up new Account.</h4>
         {% csrf_token%}
-        <h5>{{form.username.label}}</h5>
-        {{form.username}}
-        <h5>{{form.address.label}}</h5>
-        {{form.address}}
-        <h5>{{form.phone.label}}</h5>
-        {{form.phone}}
-        <h5>{{form.email.label}}</h5>
-        {{form.email}}
-        <h5>{{form.password1.label}}</h5>
-        {{form.password1}}
-        <h5>{{form.password2.label}}</h5>
-        {{form.password2}}
+        <h5>{{form.fullname.label}} :  {{form.fullname}}</h5>
+       
+        <h5>{{form.username.label}}: {{form.username}}</h5>
+       
+        <h5>{{form.address.label}}:{{form.address}}</h5>
+        
+        <h5>{{form.phone.label}} : {{form.phone}}</h5>
+       
+        <h5>{{form.email.label}} :{{form.email}}</h5>
+        
+        <h5>{{form.password1.label}}:  {{form.password1}}</h5>
+       
+        <h5>{{form.password2.label}} : {{form.password2}}</h5>
+        
         <!-- {{form.as_p}} -->
         <!-- {{ form|crispy }}     -->
-        <br><br><br>
+        
         <input type="submit" value="Register">
         <p class="message">Already registered? <a href="/login/">Log In</a></p>
+        </div>
+        </div>
       </form>
       
       {{ form.errors }}

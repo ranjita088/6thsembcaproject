@@ -45,6 +45,7 @@ from django.contrib.auth.models import AbstractUser
 # from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractUser):
+    fullname = models.CharField(max_length= 225,null=True)
     username = models.CharField(max_length= 225,null=True)
     address = models.CharField(max_length=255,null=True)
     phone = models.IntegerField(null=True)

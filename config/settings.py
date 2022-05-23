@@ -33,20 +33,17 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     'apps.hospitalappointment',
     'admin_interface',
-    'colorfield' ,
+    'colorfield',
     'crispy_forms',
-    
 
-    
-    
 ]
 AUTH_USER_MODEL = 'hospitalappointment.CustomUser'
 
@@ -84,25 +81,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'appointment6th',
+        'HOST' :'localhost',
+        'PORT': 5432,
+        'USER':'postgres',
+        'PASSWORD':'postgres'
+
+
+    }
+}
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'hospitalappointment',
-#         'HOST' :'localhost',
-#         'PORT': 5432,
-#         'USER':'postgres',
-#         'PASSWORD':'postgres'
-
-
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -154,22 +152,12 @@ STATIC_URL = 'static/'
 
 
 
-#email setting
-# EMAIL_HOST = 'smtp'
-# EMAIL_PORT = 8000
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD =''
-# EMAIL_USE_TIS = False # security
-# EMAIL_USE_SSL = False
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST_USER = 'ranjitamaharjan16@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'rangitamaharjan8@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_RECEIVING_USER = ['ranjitamaharjan16@gmail.com']
-
+EMAIL_HOST_USER = 'maharjanrenuka77@gmail.com'
+EMAIL_HOST_PASSWORD = '1999112@'
+EMAIL_RECEIVING_USER =['maharjanrenuka77@gmail.com']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
