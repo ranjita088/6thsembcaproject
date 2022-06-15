@@ -14,24 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-admin.site.site_header="Appointment System"
-admin.site.site_title="Admin_Login"
-admin.site.index_title="Appointment"
+admin.site.site_header = "Appointment System"
+admin.site.site_title = "Admin_Login"
+admin.site.index_title = "Appointment"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",include("apps.hospitalappointment.urls")),
+    path("", include("apps.hospitalappointment.urls")),
     path('reset_password/',
-     auth_views.PasswordResetView.as_view(),
-     name="reset_password"),
-
-    path('reset_password_sent/', 
-        auth_views.PasswordResetDoneView.as_view(), 
-        name="password_reset_done"),
-
-    path('password/reset/confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-
+         auth_views.PasswordResetView.as_view(),
+         name="reset_password"),
+    path('reset_password_sent/',
+         auth_views.PasswordResetDoneView.as_view(),
+         name="password_reset_done"),
+    path('password/reset/confirm/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm'),
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

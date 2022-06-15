@@ -36,15 +36,15 @@
 
   <div class="copy">
     <div class="container">
-        <a href="https://www.smarteyeapps.com/">2015 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
-        
-        <span>
-        <a><i class="fab fa-github"></i></a>
-        <a><i class="fab fa-google-plus-g"></i></a>
+        <p>2022 <a href="https://www.facebook.com/mhrzonRenuka/">Ranjita Maharjan.</a> All Rights Reserved | Privacy Policy</p>
+       
+        <!-- <span>
+        <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+        <a href="https://www.google.com/" > <i class="fab fa-google-plus-g"></i></a>
         <a><i class="fab fa-pinterest-p"></i></a>
         <a><i class="fab fa-twitter"></i></a>
-        <a><i class="fab fa-facebook-f"></i></a>
-</span>
+        <a href="https://www.yahoo.com/"><i class="fab fa-facebook-f"></i></a>
+</span>  -->
     </div>
 
 </div>
@@ -57,6 +57,18 @@
 <script src="{% static 'plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 
-
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>
 </html>
 

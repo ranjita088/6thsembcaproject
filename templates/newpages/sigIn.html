@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
 
 <style>
   /* CSS Libraries Used 
@@ -42,7 +36,7 @@
     border-top: 10px solid #79a6fe;
     border-bottom: 10px solid #8BD17C;
     width: 400px;
-    height: 500px;
+    height: 525px;
     box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
   }
   
@@ -74,18 +68,13 @@
     padding: 14px 10px;
     width: 250px;
     outline: none;
-    color: #d6d6d6;
-        -webkit-transition: all .2s ease-out;
-      -moz-transition: all .2s ease-out;
-      -ms-transition: all .2s ease-out;
-      -o-transition: all .2s ease-out;
-      transition: all .2s ease-out;
+   
     
   }
-  ::-webkit-input-placeholder {
+  /* ::-webkit-input-placeholder {
     color: #565f79;
   }
-  
+   */
   .box input[type = "text"]:focus,.box input[type = "password"]:focus {
     border: 1px solid #79A6FE;
     
@@ -168,7 +157,7 @@
   }
   
   
-  /* .error {
+  .error {
     background: #ff3333;
     text-align: center;
     width: 337px;
@@ -182,21 +171,14 @@
     left: 7.2%;
     color: white;
     display: none;
-  } */
-  
-  
-  
-
+  } 
 </style>
-  
-</head>
-<body>
-  
 
+<body>
 <body id="particles-js"></body>
 <div class="animated bounceInDown">
   <div class="container">
-    <!-- <span class="error animated tada" id="msg"></span> -->
+    <span class="error animated tada" id="msg"></span>
         <form  name="form1" class="box" action="" method="post"  >
           <h3>Login <span>Dashboard</span></h3>
         <h5>Sign in to your account.</h5>
@@ -207,12 +189,12 @@
             <span></span>
             <small class="rmb">Remember me</small>
           </label>
-          <a href="/password_reset/" class="forgetpass">Forget Password?</a>
+          <a href="/reset_password/" class="forgetpass">Forget Password?</a>
           <input type="submit" value="Sign in" class="btn1">
-          <!-- <button class="btn btn-primary" type="submit">Login</button> -->
-          
-        </form>
         <a href="/signup/" class="dnthave">Don’t have an account? Sign up</a>
+       
+      </form>
+   
     </div> 
 </div>
 
@@ -377,4 +359,3 @@ particlesJS("particles-js", {
   "retina_detect": true
 });
 </script>
-</html>

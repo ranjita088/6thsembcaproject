@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block body_content %}
+
+<br><br><br><br><br><br>
+<div class="container">
+<table id="example" class="table table-hover  mt-5">
+  <thead>
+    <tr>
+      
+      <th scope="col">Doctor Name</th>
+      <th scope="col">Doctor Email</th>
+      <th scope="col">Doctor Number</th>
+      <th scope="col">Doctor Address</th>
+      <th scope="col">Specialist</th>
+      <th scope="col">Nmc No.</th>
+      <th scope="col">Degree</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    <tr>
+     
+      <td>{{ infos.doc_name }}</td>
+      <td>{{ infos.doc_email }}</td>
+      <td>{{ infos.doc_number }}</td>
+      <td>{{ infos.doc_address }}</td>
+      <td>{{ infos.department }}</td>
+      <td>{{ infos.nmc }}</td>
+      <td>{{ infos.degree }}</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+<br><br><br><br><br><br><br>
+{% endblock %}

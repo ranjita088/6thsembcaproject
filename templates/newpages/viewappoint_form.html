@@ -3,43 +3,102 @@
 {% load static %}
 
 {% block body_content %}
+<style>
 
+.btn1 {
+    border:0;
+    background: #7f5feb;
+    color: #dfdeee;
+    border-radius: 100px;
+    width: 150px;
+    height: 49px;
+    font-size: 16px;
+    position: left;
+    top: 79%;
+    left: 8%;
+    transition: 0.3s;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn1:hover {
+    background: #5d33e6;
+  }
+  .align-right {
+        text-align: right;
+        border: 0;
+        
+      }
+  
+</style>
 <br><br><br><br><br><br><br><br>
-
-<table class="table">
+<div class="container" style="width: 25S;">
+ 
+    <h2 class="text-center text-primary font-weight-bold">Following are your appointments</h2>
+  
+<table id="example" class="table table-hover  mt-5">
   <thead>
     <tr>
       <th>S.N</th>
       <th scope="col">PatientName</th>
-      <th scope="col">AppointmentDate</th>
-      <th scope="col">AppointmentTime</th>
-      <th scope="col">PatientSymptoms</th>
-      <th scope="col">Doctor</th>
-      <th scope="col">create_at</th>
-      <th scope="col"> update_at</th>
+      <th scope="col">Date</th>
+      <th scope="col">Slot No.</th>
+      <th scope="col">Symptoms</th>
+      <th scope="col">DoctorName</th>
+      <th scope="col">Create_at</th>
+      <th scope="col"> Update_at</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <p style="font-size: large;"><b>Following are your appointments</b></p>
-    <br><br>
     {% for appt in appointments %}
     <tr>
     <th scope="row">{{forloop.counter}}</th>
-    <td>{{appt.patient_name}}</td>
-    <td>{{appt.date}}</td>
-    <td>{{appt.time}}</td>
-    <td>{{appt.symptoms}}</td>
-    <td>{{appt.doctor}}</td>
-    <td>{{appt.create_at}}</td>
-    <td>{{appt.update_at}}</td>
+    <td scope="row">{{appt.patient_name}}</td>
+    <td scope="row">{{appt.date}}</td>
+    <td scope="row">{{appt.timeslot}}</td>
+    <td scope="row">{{appt.symptoms}}</td>
+    <td scope="row">{{appt.doctor}}</td>
+    <td scope="row">{{appt.create_at}}</td>
+    <td scope="row">{{appt.update_at}}</td>
+      
+   <!-- <td  class="d-flex justify-content-between">
+     <a href="{% url 'docdeleteappt' appt.id %}">Accepted</a>
+     &nbsp; 
+     <a href="#">Reject</a>
+
+
+  </td> -->
+  <!-- <td>  
+    <a class="btn btn-success"  href="#" >Approve</a>
+    
+    <br><br>
+    <a class="btn btn-danger" href="#" >Disapprove</a>
+  </td> -->
+  
+  <td>
+    {% if appt.status == Pending %}
+    <a href="{% url 'approve_appointment_view' appointment_id=lappointment.id %}" class="btn btn-success" onclick="approveit()">Approve</a>
+    <br><br>
+    <a class="btn btn-danger" href="{% url 'disapprove_appointment_view' appointment_id=lappointment.id %}" >Disapprove</a>
+    {% elif appt.status != Pending  %}
+     <button class="btn btn-warning"  data-toggle="modal" data-target="#reply_modal" onclick="approveit()">Approved</button>
+    {% else %}
+    <button class="btn btn-danger" onclick="approveit()" data-toggle="modal" data-target="#reply_modal">Disapproved</button>
+    {% endif %}
+</td>
     </tr>
-    {% endfor %}
+    
   </tbody>
+  {% endfor %}
 </table>
 
 
-
-</body>
-</html>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-{%  endblock %}
+</div>
+<br><br><br><br><br><br><br><br><br>
+<script>
+  function approveit(){
+    alert("are sure to approved the appointment");
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block body_content %}
+
+<br><br><br><br><br><br>
+<style>
+  .container1 {
+    display: flex;
+
+  }
+
+  .card {
+
+    margin: 20px;
+  }
+</style>
+<br><br><br>
+<h2 class="text-center text-primary font-weight-bold">Available Doctor Information</h2>
+<br><br>
+<div class="container1">
+
+
+
+  <!-- <table id="example" class="table table-hover  mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Doctor ID</th>
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Doctor Email</th>
+            <th scope="col">Doctor Number</th>
+            <th scope="col">Doctor Address</th>
+            <th scope="col">Specialist</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          {% for doctor in doc %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{ doctor.doc_name }}</td>
+            <td>{{ doctor.doc_email }}</td>
+            <td>{{ doctor.doc_number }}</td>
+            <td>{{ doctor.doc_address }}</td>
+            <td>{{ doctor.department }}</td>
+            
+          </tr>
+          
+          {% endfor %}
+        </tbody>
+    </table>  -->
+  {% for doctor in doc %}
+  <div class="card">
+    <img src="{{ doctor.doc_image.url }}" class="card-img-top" alt="...">
+
+    <div class="card-body">
+
+      <h5 class="card-title"><a href="{% url 'doctorinfo' doctor.id %}">{{ doctor.doc_name }}</a></h5>
+      {% comment %} {% endcomment %}
+      <h5 class="card-title">{{ doctor.department }}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+    </div>
+  </div>
+
+
+  {% endfor %}
+</div>
+<br><br><br><br><br><br><br>
+{% endblock %}

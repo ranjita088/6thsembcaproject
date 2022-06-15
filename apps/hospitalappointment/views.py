@@ -4,12 +4,17 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
-from apps.hospitalappointment.forms import ContactForm, CustomUserForm ,DoctorAppointmentForm, PasswordResetForm
+from django.urls import reverse
+from apps.hospitalappointment.forms import ContactForm, CustomUserForm ,DoctorAppointmentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout,authenticate
-from apps.hospitalappointment.models import CustomUser, DoctorAppointment,Doctor 
+from apps.hospitalappointment.models import CustomUser, DoctorAppointment,Doctor, MedicalDepartment 
 from django.core.mail import send_mail
 from config import settings
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
+
 
 def index_page(request):
     context = dict()
@@ -23,13 +28,11 @@ def index_page(request):
             context['appointments'] = appointments
     return render(request,"pages/index.html",context)
 
+
 def About_us(request):
     context =dict()
     return render(request,"pages/about_us.html",context)    
 
-# def Contact_us(request):
-#     context = dict()
-#     return render(request,"pages/contact_us.html",context) 
 
 def Contact_us(request):
     sub = ContactForm()
@@ -39,13 +42,90 @@ def Contact_us(request):
             email = sub.cleaned_data['email']
             name=sub.cleaned_data['name']
             message = sub.cleaned_data['message']
-            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
+            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER,fail_silently = False)
             return render(request, 'newpages/contactussuccess.html')
     return render(request, 'pages/contact_us.html', {'form':sub})
+
 
 def Services(request):
     context =dict()
     return render(request,"pages/services.html",context) 
+
+
+# @login_required(login_url ='/login/')
+# def createAppointment(request):
+#     if(request.method == "POST"):
+#         form = DoctorAppointmentForm(request.POST)
+#         if(form.is_valid):
+            
+#             desc=request.POST.get('symptoms')
+            
+#             ap = Doctor.objects.get(user_id=request.user.id)
+
+#             if ap.department == 'Cardiologist':
+#                 if 'heart' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+
+#             if ap.department == 'Dermatologists':
+#                 if 'skin' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+#             if ap.department == 'Emergency Medicine Specialists':
+#                 if 'fever' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+#             if ap.department == 'Allergists/Immunologists':
+#                 if 'allergy' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+#             if ap.department == 'Anesthesiologists':
+#                 if 'surgery' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+
+#             if ap.department == 'Colon and Rectal Surgeons':
+#                 if 'cancer' in desc:
+#                     pass
+#                 else:
+#                     print('else')
+#                     message="Please Choose Doctor According To Disease"
+#                     form = DoctorAppointmentForm()
+#                 return render(request,"newpages/appoint_form.html",{'form':form,'message':message})
+
+#             # print("thanks")
+#             a = form.save(commit=False)
+#             a.user =request.user # currnet login user ko info aauxa
+#             a.save()
+#             return HttpResponseRedirect('/')
+#     else:
+#         form = DoctorAppointmentForm()
+#     return render(request,"newpages/appoint_form.html",{'form':form})
 
 
 @login_required(login_url ='/login/')
@@ -53,6 +133,7 @@ def createAppointment(request):
     if(request.method == "POST"):
         form = DoctorAppointmentForm(request.POST)
         if(form.is_valid):
+            
             # print("thanks")
             a = form.save(commit=False)
             a.user =request.user # currnet login user ko info aauxa
@@ -60,7 +141,7 @@ def createAppointment(request):
             return HttpResponseRedirect('/')
     else:
         form = DoctorAppointmentForm()
-    return render(request,"newpages/appoint_form.html",{'form':form})
+    return render(request,"newpages/appoint_form.html",{'form':form}) 
 
 def Signup(request):
     if(request.method == 'POST'):
@@ -69,36 +150,16 @@ def Signup(request):
             # print("thanks")
             user = form.save()
             login(request, user)
+            messages.success(request,"register successfully")
             return redirect('login')
             # return HttpResponseRedirect('/')
+        # else:
+        #     messages.error(request,'invalid login')
 
     else:
         form = CustomUserForm()
     return render(request, 'newpages/signup.html', {'form': form})
 
-
-from django.contrib import messages
-from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm
-
-# def SignUp(request):
-#     if(request.method == "POST"):
-#         form = CustomUserForm(request.POST)
-
-#         if(form.is_valid):
-#             # print("thanks")
-#             form.save()
-#             # login(request,user)
-#             messages.success(request,"register successfully")
-#             return redirect('login')
-#             # return HttpResponseRedirect('/')
-#     else:
-#         messages.error(request,'invalid login')
-#         form  = CustomUserForm()
-#     return render(request,"newpages/signup.html",{'form':form})
-
-
-  
 
 def SignIn(request):
     if(request.method == "POST"):
@@ -121,6 +182,7 @@ def SignIn(request):
         form = AuthenticationForm()
         return render(request,"newpages/sigIn.html",{'form':form})
 
+
 def SignOut(request):
     logout(request)
     messages.info(request, "You have successfully logged out.") 
@@ -135,7 +197,8 @@ def ViewAppointment(request):
   doctor = Doctor.objects.get(user__id = request.user.id)
   appointments = DoctorAppointment.objects.filter(doctor__id = doctor.id)
   context['appointments'] = appointments
-  appointments = DoctorAppointment.objects.filter(doctor__id = 4,done=False)
+#   appointments = DoctorAppointment.objects.filter(doctor__id = 4,done=False)
+  appointments = DoctorAppointment.objects.filter(Approved=False).order_by("create_at")
   return render(request,"newpages/viewappoint_form.html",context)
     
 
@@ -151,6 +214,7 @@ def UserDeleteAppt(request,id):
     appointment.delete()
     return HttpResponseRedirect('/')
    
+
 def UserUpdateAppt(request,id):
     if (request.method == "POST"):
         appointment = DoctorAppointment.objects.get(id=id)
@@ -161,18 +225,46 @@ def UserUpdateAppt(request,id):
     else:
         appointment = DoctorAppointment.objects.get(id=id)
         form = DoctorAppointmentForm(instance=appointment)
-
-
     context = {
         'form': form,
     }
     return render(request, "newpages/user_updateappt.html", context)
 
 
+def View_Doctor(request):
+    context = dict()
+    context['doc'] =Doctor.objects.all() #fetch all data
+    return render(request,'newpages/viewdoctor.html',context)
+
+
+def DoctorInfo(request,pk):
+    context = dict()
+    # print(request.user.id)
+    context['infos'] = Doctor.objects.get(id=pk) 
+    return render(request, "newpages/doctorinfo.html",context)
+
+
+def DocDeleteAppt(request,id):
+    appointment = DoctorAppointment.objects.get(id=id)
+    appointment.delete()
+    return HttpResponseRedirect('/')
+
+
+
+def approve_appointment_view(request,appointment_id):
+    appointments=DoctorAppointment.objects.get(id=appointment_id)
+    appointments.status=True
+    appointments.save()
+    return redirect(reverse('viewAppointment'))
+
+
+def disapprove_appointment_view(request,appointment_id):
+    appointments=DoctorAppointment.get(id=appointment_id)
+    appointments.status=2
+    appointments.save()
+    return HttpResponseRedirect(reverse("viewAppointment"))
 
 #password
-
-
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordResetForm
@@ -184,31 +276,31 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 # from apps.hospitalappointment.forms import PasswordResetForm
 
-def password_reset_request(request):
-	if request.method == "POST":
-		password_reset_form = PasswordResetForm(request.POST)
-		if password_reset_form.is_valid():
-			data = password_reset_form.cleaned_data['email']
-			associated_users = CustomUser.objects.filter(Q(email=data))
-			if associated_users.exists():
-				for user in associated_users:
-					subject = "Password Reset Requested"
-					email_template_name = "password/password_reset_email.txt"
-					c = {
-					"email":user.email,
-					'domain':'127.0.0.1:8000',
-					'site_name': 'Website',
-					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
-					"user": user,
-					'token': default_token_generator.make_token(user),
-					'protocol': 'http',
-					}
-					email = render_to_string(email_template_name, c)
-					try:
-						send_mail(subject, email, 'admin@gmail.com' , [user.email], fail_silently=False)
-					except BadHeaderError:
-						return HttpResponse('Invalid header found.')
-					return redirect ("/password_reset/done/")
-	password_reset_form = PasswordResetForm()
+# def password_reset_request(request):
+# 	if request.method == "POST":
+# 		password_reset_form = PasswordResetForm(request.POST)
+# 		if password_reset_form.is_valid():
+# 			data = password_reset_form.cleaned_data['email']
+# 			associated_users = CustomUser.objects.filter(Q(email=data))
+# 			if associated_users.exists():
+# 				for user in associated_users:
+# 					subject = "Password Reset Requested"
+# 					email_template_name = "password/password_reset_email.txt"
+# 					c = {
+# 					"email":user.email,
+# 					'domain':'127.0.0.1:8000',
+# 					'site_name': 'Website',
+# 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+# 					"user": user,
+# 					'token': default_token_generator.make_token(user),
+# 					'protocol': 'http',
+# 					}
+# 					email = render_to_string(email_template_name, c)
+# 					try:
+# 						send_mail(subject, email, 'admin@gmail.com' , [user.email], fail_silently=False)
+# 					except BadHeaderError:
+# 						return HttpResponse('Invalid header found.')
+# 					return redirect ("/password_reset/done/")
+# 	password_reset_form = PasswordResetForm()
     
-	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
+# 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})

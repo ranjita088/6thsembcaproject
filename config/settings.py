@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'appointment6th',
+        'NAME': 'doctorappoint',
         'HOST' :'localhost',
         'PORT': 5432,
         'USER':'postgres',
@@ -157,7 +157,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'maharjanrenuka77@gmail.com'
-EMAIL_HOST_PASSWORD = '1999112@'
+EMAIL_HOST_PASSWORD = 'lhjfexchsrttfijy'
 EMAIL_RECEIVING_USER =['maharjanrenuka77@gmail.com']
+# DEFAULT_FROM_EMAIL = 'maharjanrenuka77@gmail.com'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

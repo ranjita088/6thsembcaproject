@@ -1,167 +1,201 @@
-{% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<!-- {% load crispy_forms_tags %} -->
 
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+<style>
+  
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
 
-    body,
-    html {
-      font-family: 'Source Sans Pro', sans-serif;
-      background-color: #1d243d;
-      padding: 0;
-      margin: 0;
-    }
+  body,
+  html {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #1d243d;
+    padding: 0;
+    margin: 0;
+  }
 
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
-    .container {
-      margin: 0;
-      top: 50px;
-      left: 50%;
-      position: absolute;
-      text-align: center;
-      transform: translateX(-50%);
-      background-color: rgb(33, 41, 66);
-      border-radius: 9px;
-      border-top: 10px solid #79a6fe;
-      border-bottom: 10px solid #8BD17C;
-      width:500px;
-      height: 500px;
-      box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
-    }
+  .container {
+    margin: 0;
+    top: 50px;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    background-color: rgb(33, 41, 66);
+    border-radius: 9px;
+    border-top: 10px solid #79a6fe;
+    border-bottom: 10px solid #8BD17C;
+    width:500px;
+    height: 550px;
+    box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
+  }
 
-    .box h3 {
-      font-family: 'Source Sans Pro', sans-serif;
-      color: #5c6bc0;
-      font-size: 18px;
-      margin-top: 50px;
-      ;
-    }
+  .box h3 {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #5c6bc0;
+    font-size: 18px;
+    margin-top: 50px;
+    ;
+  }
 
-    .box h3 span {
-      color: #dfdeee;
-      font-weight: lighter;
-    }
-    .box h4 {
+  .box h3 span {
+    color: #dfdeee;
+    font-weight: lighter;
+  }
+  .box h4 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  color: #a1a4ad;
+  letter-spacing: 1.5px;
+  margin-top: -15px;
+  margin-bottom: 70px;
+}
+
+  .box h5 {
+    /* display: flex; */
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 13px;
     color: #a1a4ad;
     letter-spacing: 1.5px;
     margin-top: -15px;
-    margin-bottom: 70px;
+    margin-bottom: 25px;
+  }
+  
+  .box input[type="text"],
+  .box input[type="textarea"],
+  .box input[type="number"],
+  .box input[type="email"],
+  .box input[type="password"],
+  .box input[type="cpassword"] {
+    /* display: block; */
+    background: #262e49;
+    border: 0;
+    border-radius: 5px;
+    padding: 6px 10px;
+    width: 250px;
+    outline: none;
   }
 
-    .box h5 {
-      /* display: flex; */
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 13px;
-      color: #a1a4ad;
-      letter-spacing: 1.5px;
-      margin-top: -15px;
-      margin-bottom: 25px;
-    }
+  .box input[type="text"]:focus,
+  .box input[type="textarea"]:focus,
+  .box input[type="number"]:focus,
+  .box input[type="email"]:focus,
+  .box input[type="password"]:focus,
+  {
     
-    .box input[type="text"],
-    .box input[type="textarea"],
-    .box input[type="number"],
-    .box input[type="email"],
-    .box input[type="password"],
-    .box input[type="cpassword"] {
-      /* display: block; */
-      background: #262e49;
-      border: 0;
-      border-radius: 5px;
-      padding: 6px 10px;
-      width: 250px;
-      outline: none;
-    }
+  border: 1px solid #79A6FE;
+  }
 
-    .box input[type="text"]:focus,
-    .box input[type="textarea"]:focus,
-    .box input[type="number"]:focus,
-    .box input[type="email"]:focus,
-    .box input[type="password"]:focus,
-    {
-      
-    border: 1px solid #79A6FE;
-    }
+  a {
+    color: #5c7fda;
+    text-decoration: none;
+  }
 
-    a {
-      color: #5c7fda;
-      text-decoration: none;
-    }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  .btn1 {
+  border:0;
+  background: #7f5feb;
+  color: #dfdeee;
+  border-radius: 100px;
+  width: 320px;
+  height: 40px;
+  font-size: 16px;
+  position: center;
+  top: 79%;
+  left: 8%;
+  transition: 0.3s;
+  cursor: pointer;
+}
 
-    .error {
-      background: #ff3333;
-      text-align: center;
-      width: 337px;
-      height: 20px;
-      padding: 2px;
-      border: 0;
-      border-radius: 5px;
-      margin: 10px auto 10px;
-      position: absolute;
-      top: 31%;
-      left: 7.2%;
-      color: white;
-      display: none;
-    }
-  </style>
+.btn1:hover {
+  background: #5d33e6;
+}
+.dnthave{
+    position: absolute;
+    top: 95%;
+    left: 34%;
+}
 
-</head>
+  .error {
+    background: #ff3333;
+    text-align: center;
+    width: 337px;
+    height: 20px;
+    padding: 2px;
+    border: 0;
+    border-radius: 5px;
+    margin: 10px auto 10px;
+    position: absolute;
+    top: 31%;
+    left: 7.2%;
+    color: white;
+    display: none;
+  }
+  .typcn {
+  position: absolute;
+  left: 339px;
+  top: 282px;
+  color: #3b476b;
+  font-size: 22px;
+  cursor: pointer;
+}      
+
+.typcn.active {
+  color: #7f60eb;
+}
+
+ 
+</style>
 
 <body>
   <body id="particles-js"></body>
   <div class="animated bounceInDown">
     <div class="container">
       <span class="error animated tada" id="msg"></span>
-
       <form class="box"  method="post">
         <div class="form-row">
           <div class="form-group col-md-6">
+           
         <h3>Register <span>Dashboard</span></h3>
         <h4>Sign up new Account.</h4>
         {% csrf_token%}
-        <h5>{{form.fullname.label}} :  {{form.fullname}}</h5>
+        <h5>{{form.fullname.label}}: {{form.fullname}}</h5>
        
-        <h5>{{form.username.label}}: {{form.username}}</h5>
+        <h5>{{form.username.label}}:{{form.username}}</h5>
        
         <h5>{{form.address.label}}:{{form.address}}</h5>
         
-        <h5>{{form.phone.label}} : {{form.phone}}</h5>
+        <h5>  {{form.phone.label}}:{{form.phone}}</h5>
        
-        <h5>{{form.email.label}} :{{form.email}}</h5>
+        <h5>  {{form.email.label}}:{{form.email}}</h5>
         
-        <h5>{{form.password1.label}}:  {{form.password1}}</h5>
+        <h5>{{form.password1.label}}:{{form.password1}}</h5>
        
-        <h5>{{form.password2.label}} : {{form.password2}}</h5>
+        <h5>{{form.password2.label}}:{{form.password2}}</h5>
         
         <!-- {{form.as_p}} -->
         <!-- {{ form|crispy }}     -->
-        
-        <input type="submit" value="Register">
-        <p class="message">Already registered? <a href="/login/">Log In</a></p>
+        {{ form.errors }}
+       
+        <input type="submit" value="Register" class="btn1">
+        <!-- <p class="message">Already registered? <a href="/login/">Log In</a></p> -->
+        <a href="/login/" class="dnthave">Already registered? Log In </a>
         </div>
         </div>
       </form>
+  
       
-      {{ form.errors }}
     </div>
   </div>
 </body>
-</html>
+
+
+

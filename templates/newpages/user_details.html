@@ -1,54 +1,53 @@
 {% extends "base.html"%}
-
 {% load static %}
-
 {% block body_content %}
 
-<br><br><br><br><br><br><br><br>
+<br><br>
+<div class="container">
+  <br><br><br><br><br><br>
+  <h2 class="text-center text-primary font-weight-bold">User Info</h2>
+  <table id="example" class="table table-hover  mt-5">
+    <thead>
+      <tr>
+        <th>S.N</th>
+        <th scope="col">PatientName</th>
+        <th scope="col">PatientAddress</th>
+        <th scope="col">PatientPhone</th>
+        <th scope="col">Doctor</th>
+        <th scope="col">AppointmentDate</th>
+        <th scope="col">AppointmentSlot</th>
+        <th scope="col">PatientSymptoms</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <p>Patient here</p> -->
+      {% for appt in appointments %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{appt.patient_name}}</td>
+        <td>{{ appt.patient_address}}</td>
+        <td>{{ appt.patient_number}}</td>
+        <td>{{ appt.doctor}}</td>
+        <td>{{ appt.date}}</td>
+        <td>{{ appt.timeslot}}</td>
+        <td>{{ appt.symptoms}}</td>
+        <td>{{ appt.status}}</td>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>S.N</th>
-      <th scope="col">Patient Name</th>
-      <th scope="col">Patient Address</th>
-      <th scope="col">Patient Phone</th>
-      <th scope="col">Doctor</th>
-      <th scope="col">AppointmentDate</th>
-      <th scope="col">AppointmentTime</th>
-      <th scope="col">PatientSymptoms</th>
-      <th>Action</th>
+        {% if appt.Approved %}
+        <td>Complete</td>
+        {% else %}
+        <td class="d-flex justify-content-between">
+          <a href="{% url 'userupdateappt' appt.id %}"><i class="bi bi-pencil-square text-warning"></i></a>
 
-    </tr>
-  </thead>
-  <tbody>
-    <p style="font-size: large; text-align: center;"><b>User Info</b></p>
-    <br><br>
-    <!-- <p>Patient here</p> -->
-    {% for appt in appointments %}
-    <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{appt.patient_name}}</td>
-      <td>{{ appt.patient_address}}</td>
-      <td>{{ appt.patient_phone}}</td>
-      <td>{{ appt.doctor}}</td>
-      <td>{{ appt.date}}</td>
-      <td>{{ appt.time}}</td>
-      <td>{{ appt.symptoms}}</td>
-
-      <td class="d-flex justify-content-between">
-
-
-        <a href="{% url 'userupdateappt' appt.id %}"><i class="bi bi-pencil-square text-warning"></i></a>
-
-        <a href="{% url 'userdeleteappt' appt.id %}"><i class="bi bi-trash-fill text-danger"></i></a>
-     </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-</body>
-
-</html>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          <a href="{% url 'userdeleteappt' appt.id %}"><i class="bi bi-trash-fill text-danger"></i></a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br><br><br><br><br><br><br>
 {% endblock %}
